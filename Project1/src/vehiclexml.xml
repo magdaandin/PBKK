@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- JANGAN LUPA TAMBAHKAN PREFIX DAN SCHEMA LOCATION -->
+	<context:property-placeholder location="classpath:ini.properties"/>
+	<!-- ga harus .properties. bebas -->
+	
+	<bean id="myFree" class="tugas.FreeWashing">
+		
+	</bean>
+	
+	<bean scope="prototype" id="myVehicleProto" class="tugas.CarVehicle">
+		<property name="type" value="Tsumu"></property>
+	</bean>
+
+	<bean id="myVehicle" class="tugas.CarVehicle">
+		<!-- Ini mulai Dependency Injection!! -->
+			<constructor-arg ref="myFree"></constructor-arg> 
+			
+			<!-- INI KALO DI DEFINE LANGSUNG -->
+				<property name="type" value="Samu"></property>
+			<!-- INI PAKE ini.propoerties -->
+				
+			
+			
+		<!-- Ini Setter Injection -->
+			<!-- <property name="fortuneService" ref="myFortune"></property>  -->
+			
+	</bean>
+
+	
+
+</beans>
